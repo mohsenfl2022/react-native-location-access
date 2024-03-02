@@ -1,6 +1,6 @@
 {
   "name": "react-native-location-access",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "access mobile location",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
