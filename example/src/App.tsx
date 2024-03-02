@@ -1,18 +1,34 @@
 import * as React from 'react';
-
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-location-access';
 
+import { checkGpsStatus, onChangeState } from 'react-native-location-access';
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
+  const check = async () => {
+    checkGpsStatus().then((res) => {
+      console.log('====================================');
+      console.log(res);
+      console.log('====================================');
+    });
+  };
+  const change = async () => {
+    try {
+      const res = await onChangeState();
+      console.log('====================================');
+      console.log(res);
+      console.log('====================================');
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text onPress={check} style={styles.text}>
+        checkGpsStatus
+      </Text>
+
+      <Text onPress={change} style={styles.text}>
+        onChangeState
+      </Text>
     </View>
   );
 }
@@ -22,10 +38,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
   box: {
     width: 60,
     height: 60,
     marginVertical: 20,
   },
+  text: { color: 'black', fontSize: 24 },
 });

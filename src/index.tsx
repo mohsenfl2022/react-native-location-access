@@ -17,6 +17,10 @@ const LocationAccess = NativeModules.LocationAccess
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return LocationAccess.multiply(a, b);
+export function checkGpsStatus(): Promise<any> {
+  return LocationAccess.checkGpsStatus();
+}
+
+export function onChangeState(): Promise<any> {
+  return LocationAccess.onChangeState();
 }
